@@ -4,16 +4,16 @@ exports.addProducts = async(req, res) => {
     try {
       const payload = req.body;
       const newProduct = new products(payload);
-       console.log("New Product ***",newProduct);
+  //     console.log("New Product ***",newProduct);
       const productStock={productid:newProduct.productid,
                       productname:newProduct.productname,
                       productinventory:newProduct.quantity,
                       unitsold:0,
                       currentstock:newProduct.quantity};
-        console.log("Product Stock ****",productStock);
+  //      console.log("Product Stock ****",productStock);
 
        const productStock1= new stocks(productStock); 
-       console.log("Product Stock1 ****",productStock1);
+   //    console.log("Product Stock1 ****",productStock1);
                       
       newProduct
         .save()
@@ -42,20 +42,20 @@ exports.addProducts = async(req, res) => {
 
   exports.updateProducts = async (req, res) => {
     try {
-      console.log("Update Products");
+ //     console.log("Update Products");
       let productId = req.params.productid;
       let payload = req.body;
          
       const productDetails= await products.findOne({productid:productId });
-      console.log(productDetails);
+ //     console.log(productDetails);
       const stockDetails= await stocks.findOne({productid:productId });
-      console.log("Stock",stockDetails);
+ //     console.log("Stock",stockDetails);
       if (productDetails) {
         stockDetails.productinventory=payload.quantity;
         stockDetails.currentstock=payload.quantity;
         products.findOneAndUpdate({productid:productDetails.productid}, payload)
           .then((data) => {
-            console.log("1");
+  //          console.log("1");
             res.status(200).send({
               message: "Product information has been updated successfully.",
               data:productDetails
@@ -120,9 +120,9 @@ exports.addProducts = async(req, res) => {
   exports.getAllProducts = async (req, res) => {
     try {
       // To get data from DB;
-      console.log("***********List Products**********");
+ //     console.log("***********List Products**********");
       let productList = await products.find();
-      console.log("Products List",productList);
+  //    console.log("Products List",productList);
       if (productList) {
         return res.status(200).send({
           message: "Products have been retrieved successfully.",

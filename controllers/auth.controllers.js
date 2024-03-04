@@ -10,7 +10,7 @@ const { default: mongoose } = require("mongoose");
 exports.signup = async (req, res) => {
   try {
     const payload = req.body;
-      console.log("signup payload",payload);
+     // console.log("signup payload",payload);
     // {
     //     name: '',
     //     email: '',
@@ -40,7 +40,7 @@ exports.signup = async (req, res) => {
     //     address: ''
     // }
     delete payload.password;
-    console.log("payload.hashedPassword",payload.hashedPassword);
+   // console.log("payload.hashedPassword",payload.hashedPassword);
     // {
     //     name: '',
     //     email: '',
@@ -52,7 +52,7 @@ exports.signup = async (req, res) => {
  
 
     const newUser = new Users(payload);
-    console.log("newUser",newUser);
+    //console.log("newUser",newUser);
     newUser
       .save()
       .then((data) => {
@@ -144,7 +144,7 @@ exports.signout = async (req, res) => {
 
 exports.forgotPassword = async (req, res) => {
   try {
-    console.log("heloooooooooooo");
+   // console.log("heloooooooooooo");
     const { email } = req.body;
 
     if (!email) {
@@ -181,7 +181,7 @@ exports.forgotPassword = async (req, res) => {
     await tokenPayload.save();
 
     const link = process.env.FE_LINK+`token=${newToken}&userId=${existingUser._id}`;
-    console.log("Link",link);
+   // console.log("Link",link);
 
     let isMailSent = await sendEmail(
       existingUser.email,

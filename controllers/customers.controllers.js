@@ -4,7 +4,7 @@ exports.addCustomers= async(req, res) => {
     try {
       const payload = req.body;
       const newCustomer = new customers(payload);
-       console.log("New Customer",newCustomer);
+      // console.log("New Customer",newCustomer);
       newCustomer
         .save()
         .then((data) => {
@@ -27,12 +27,12 @@ exports.addCustomers= async(req, res) => {
 
   exports.updateCustomers = async (req, res) => {
     try {
-      console.log("Update Customers");
+  //    console.log("Update Customers");
       let customerId = req.params.customerid;
       let payload = req.body;
          
       const customerDetails= await customers.findOne({customerid:customerId });
-      console.log(customerDetails);
+   //   console.log(customerDetails);
       
       if (customerDetails) {
         customers.findOneAndUpdate({customerid:customerDetails.customerid}, payload)
@@ -92,9 +92,9 @@ exports.addCustomers= async(req, res) => {
   exports.getAllCustomers = async (req, res) => {
     try {
       // To get data from DB;
-      console.log("***********List Customers**********");
+ //     console.log("***********List Customers**********");
       let customerList = await customers.find();
-      console.log("Customers List",customerList);
+  //    console.log("Customers List",customerList);
       if (customerList) {
         return res.status(200).send({
           message: "Customers have been retrieved successfully.",

@@ -2,7 +2,7 @@ const sales = require("../models/billing.models");
 exports.getSalesReport = async (req, res) => {
     try {
         let billingDate = req.params.billingdate;
-        console.log("billingDate",billingDate);
+ //       console.log("billingDate",billingDate);
         const startDate = new Date(billingDate); // Start of the desired date
         startDate.setUTCHours(0, 0, 0, 0); // Set time to start of day
         const endDate = new Date(billingDate); // End of the desired date
@@ -15,13 +15,13 @@ exports.getSalesReport = async (req, res) => {
                 $lte: endDate.toISOString()  // Less than or equal to end of day
             }
         };
-        console.log("query",query);
+  //      console.log("query",query);
 
         let salesList = await sales.find(query);
         
       //let salesList = await sales.find({billingdate:billingDate});
       
-      console.log("Sales List",salesList);
+  //    console.log("Sales List",salesList);
       if (salesList) {
         return res.status(200).send({
           message: "Sales have been retrieved successfully.",
